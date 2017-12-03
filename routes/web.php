@@ -14,13 +14,8 @@ $api = app('Dingo\Api\Routing\Router');
 $api->version('v1', function() use($api) {
 
   $api->group(['namespace' => 'App\Http\Controllers'], function() use($api) {
-
+    $api->post('/login', 'AuthController@login');
+    $api->get('/logout', 'AuthController@logout');
   });
 
-  $api->get('/', function () {
-      return response()->json([
-        'message' => 'API ok'
-      ]);
-  });
-  
 });

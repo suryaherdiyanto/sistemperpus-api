@@ -7,17 +7,21 @@ use Tymon\JWTAuth\JWTAuth;
 use Tymon\Exceptions\JWTException;
 use Tymon\Exceptions\TokenExpiredException;
 use Tymon\Exceptions\TokenInvalidException;
+use Dingo\Api\Exception\StoreResourceFailedException;
 use Illuminate\Http\Request;
 use Dingo\Api\Routing\Helpers;
+use Validator;
 
 class AuthController extends Controller
 {
+    use Helpers;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public $jwt;
+    protected $jwt;
+    public $validator;
 
     public function __construct(JWTAuth $jwt)
     {
@@ -25,10 +29,35 @@ class AuthController extends Controller
     }
 
     public function login(Request $request){
+      $credentials = $request->only('email', 'password');
+      $validate = Validator::make($credentials, [
+        'email' => 'required|email',
+        'password' => 'required'
+      ]);
+
+      if ($validate->fails()) {
+        throw new StoreResourceFailedException("Error Processing Request", $validate->errors());
+      }
+
+      try {
+        if (!$token = $this->jwt->attempt($credentials)) {
+            return $this->response->error('Email or password invalid!', 404);
+        }
+      } catch (JWTException $e) {
+        return $this->response->error('Could not create token!', 500);
+      } catch (TokenExpiredException $e) {
+        return $this->response->error('Token error : '. $e->getCode(), 500);
+      } catch (TokenInvalidException $e) {
+        return $this->response->error('Token error : '. $e->getCode(), 500);
+      }
+
+      return response()->json(compact('token'), 200);
 
     }
 
-    public function logout(){
-
+    public function logout(Request $request){
+      $token = $this->jwt->getToken();
+      $this->jwt->invalidate($token);
+      return $this->response->error("The token is successfully removed", 200);
     }
 }
