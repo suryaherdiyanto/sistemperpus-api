@@ -1,5 +1,5 @@
 <?php
-
+$api = app('Dingo\Api\Routing\Router');
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -11,6 +11,16 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return "hello world";
+$api->version('v1', function() use($api) {
+
+  $api->group(['namespace' => 'App\Http\Controllers'], function() use($api) {
+
+  });
+
+  $api->get('/', function () {
+      return response()->json([
+        'message' => 'API ok'
+      ]);
+  });
+  
 });

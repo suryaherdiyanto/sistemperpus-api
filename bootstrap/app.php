@@ -25,7 +25,9 @@ $app = new Laravel\Lumen\Application(
 
 $app->withFacades([
     Tymon\JWTAuth\Facades\JWTAuth::class => 'JWTAuth',
-    Tymon\JWTAuth\Facades\JWTFactory::class => 'JWTFactory'
+    Tymon\JWTAuth\Facades\JWTFactory::class => 'JWTFactory',
+    Dingo\Api\Facades\API::class => 'DingoAPI',
+    Dingo\Api\Facades\Route::class => 'DingoRoute'
 ]);
 
 $app->withEloquent();
@@ -66,9 +68,11 @@ $app->singleton(
 //    App\Http\Middleware\ExampleMiddleware::class
 // ]);
 
-// $app->routeMiddleware([
-//     'auth' => App\Http\Middleware\Authenticate::class,
-// ]);
+$app->routeMiddleware([
+    'auth' => App\Http\Middleware\Authenticate::class,
+    'auth.jwt' => Tymon\JWTAuth\Middleware\GetUserFromToken::class,
+    'auth.refresh' => Tymon\JWTAuth\Middleware\RefreshToken::class
+]);
 
 /*
 |--------------------------------------------------------------------------

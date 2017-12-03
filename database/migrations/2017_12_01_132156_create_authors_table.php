@@ -18,7 +18,7 @@ class CreateAuthorsTable extends Migration
             $table->string('nickname');
             $table->string('full_name');
             $table->boolean('genre');
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->string('phone');
             $table->text('address');
             $table->string('birth_location');
