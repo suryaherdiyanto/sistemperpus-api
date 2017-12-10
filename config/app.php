@@ -17,6 +17,8 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+    'debug' => env('APP_DEBUG', true),
+
     /*
     |--------------------------------------------------------------------------
     | Application Locale Configuration
