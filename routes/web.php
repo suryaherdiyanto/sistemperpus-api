@@ -18,4 +18,8 @@ $api->version('v1', function() use($api) {
     $api->get('/logout', 'AuthController@logout');
   });
 
+  $api->get('/key', function() {
+      return str_random(32);
+  });
+
 });
