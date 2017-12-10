@@ -12,9 +12,9 @@ return [
     |
     */
 
-    'supportsCredentials' => false,
+    'supportsCredentials' => true,
     'allowedOrigins' => ['http://libraryapi-app.herokuapp.com'],
-    'allowedHeaders' => ['Content-Type','X-Requested-With'],
+    'allowedHeaders' => ['*'],
     'allowedMethods' => ['GET','POST','PUT','DELETE'],
     'exposedHeaders' => [],
     'maxAge' => 0,
