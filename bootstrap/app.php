@@ -55,6 +55,7 @@ $app->singleton(
 
 //configuration of cors
 $app->configure('cors');
+config('cors');
 
 /*
 |--------------------------------------------------------------------------
