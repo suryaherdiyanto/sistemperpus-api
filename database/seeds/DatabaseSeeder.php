@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
         App\User::create([
           'name' => 'surya',
           'email' => 'surya@gmail.com',
-          'password' => app('hash')->make('123qwe'),
+          'password' => '123qwe',
           'role_id' => 3
         ]);
     }
