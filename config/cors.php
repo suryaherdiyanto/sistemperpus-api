@@ -13,7 +13,7 @@ return [
     */
 
     'supportsCredentials' => false,
-    'allowedOrigins' => ['http://libraryapi-app.herokuapp.com','*'],
+    'allowedOrigins' => ['http://libraryapi-app.herokuapp.com'],
     'allowedHeaders' => ['Content-Type','X-Requested-With'],
     'allowedMethods' => ['GET','POST','PUT','DELETE'],
     'exposedHeaders' => [],
