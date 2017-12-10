@@ -53,6 +53,9 @@ $app->singleton(
     App\Console\Kernel::class
 );
 
+//configuration of cors
+$app->configure('cors');
+
 /*
 |--------------------------------------------------------------------------
 | Register Middleware
