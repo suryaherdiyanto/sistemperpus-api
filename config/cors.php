@@ -13,10 +13,18 @@ return [
     */
 
     'supportsCredentials' => true,
-    'allowedOrigins' => ['https://libraryapi-app.herokuapp.com'],
+    'allowedOrigins' => ['*'],
     'allowedHeaders' => ['*'],
     'allowedMethods' => ['GET','POST','PUT','DELETE'],
     'exposedHeaders' => [],
     'maxAge' => 0,
+    'paths' => [
+      '*' => [
+        'allowedOrigins' => ['*'],
+        'allowedHeaders' => ['*'],
+        'allowedMethods' => ['GET','POST','PUT','DELETE'],
+        'maxAge' => 3600
+      ]
+    ]
 
 ];
