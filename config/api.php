@@ -70,7 +70,7 @@ return [
     |
     */
 
-    'domain' => env('API_DOMAIN', null),
+    'domain' => env('API_DOMAIN', 'http://libraryapi-app.herokuapp.com'),
 
     /*
     |--------------------------------------------------------------------------
