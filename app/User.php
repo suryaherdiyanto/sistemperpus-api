@@ -42,6 +42,10 @@ class User extends Model implements JWTSubject, Authenticatable
       return ucwords($val);
     }
 
+    public function role(){
+      return $this->belongsTo(Role::class, 'role_id');
+    }
+
     public function setPasswordAttribute($val){
       return $this->attributes['password'] = app('hash')->make($val);
     }

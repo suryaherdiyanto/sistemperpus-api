@@ -16,6 +16,11 @@ $api->version('v1', function() use($api) {
   $api->group(['namespace' => 'App\Http\Controllers'], function() use($api) {
     $api->post('/login', 'AuthController@login');
     $api->get('/logout', 'AuthController@logout');
+
+    $api->get('/members', 'MemberController@index');
+    $api->post('/members', 'MemberController@store');
+    $api->put('/members/{id}/update', 'MemberController@update');
+    $api->delete('/members/{id}', 'MemberController@delete');
   });
 
 });

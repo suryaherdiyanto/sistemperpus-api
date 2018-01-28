@@ -50,8 +50,14 @@ class AuthController extends Controller
       } catch (TokenInvalidException $e) {
         return $this->response->error('Token error : '. $e->getCode(), 500);
       }
-
-      return response()->json(compact('token'), 200);
+      $user = $this->jwt->setToken($token)->authenticate();
+      return response()->json([
+        'token' => $token,
+        'user' => [
+          'name' => $user->name,
+          'role' => $user->role->name
+        ]
+      ], 200);
 
     }
 
