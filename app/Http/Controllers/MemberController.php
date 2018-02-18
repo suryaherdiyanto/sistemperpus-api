@@ -19,17 +19,19 @@ class MemberController extends Controller
     use Helpers;
 
     private $member;
+    private $per_page;
 
-    public function __construct(){
-        $this->member = new Member();
+    public function __construct(Member $member){
+        $this->member = $member;
     }
 
     public function index(Request $request){
-        $per_page = $request->get('per_page');
+        $this->per_page = ($request->has('per_page') ? $request->get('per_page'):15);
+        $members = $this->member;
         if ($request->get('trashed') == true)
-            $members = $this->member->withTrashed()->paginate(($per_page) ? $per_page : 10);
-        else
-            $members = $this->member->paginate(($per_page) ? $per_page : 10);
+            $members = $members->withTrashed()->paginate($this->per_page);
+
+        $members = $members->orderBy('nickname')->paginate($this->per_page);
         return $this->response->paginator($members, new MemberTransformer());
     }
 
@@ -65,7 +67,7 @@ class MemberController extends Controller
         ]);
 
         if ($validate->fails()){
-            throw new StoreResourceFailedException('Terjadi kesalahan: ', $validate->erros());
+            throw new StoreResourceFailedException('Terjadi kesalahan: ', $validate->errors());
         }
 
         $this->member->find($id)->update($request->all());

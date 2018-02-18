@@ -15,6 +15,7 @@ class MemberTransformer extends TransformerAbstract {
 
     public function transform(Member $member){
         return [
+            'id' => $member->id,
             'nickname' => $member->nickname,
             'full_name' => $member->full_name,
             'genre' => $member->genre,

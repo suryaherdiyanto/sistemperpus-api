@@ -17,5 +17,6 @@ class UserSeeder extends Seeder
             'password' => '123qwe',
             'role_id' => 3
         ]);
+        factory(\App\User::class, 100)->create();
     }
 }

@@ -19,5 +19,6 @@ class MemberSeeder extends Seeder
             'phone' => '081999283771',
             'address' => 'panjer'
         ]);
+        factory(\App\Member::class, 100)->create();
     }
 }
