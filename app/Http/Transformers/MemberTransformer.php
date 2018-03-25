@@ -19,6 +19,7 @@ class MemberTransformer extends TransformerAbstract {
             'nickname' => $member->nickname,
             'full_name' => $member->full_name,
             'genre' => $member->genre,
+            'genre_plain' => ($member->genre === 1) ? 'Laki-laki':'Perempuan',
             'email' => $member->email,
             'phone' => $member->phone,
             'address' => $member->address,

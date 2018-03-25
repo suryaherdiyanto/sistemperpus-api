@@ -33,11 +33,4 @@ class Member extends Model
     public function getFullNameAttribute($val){
         return ucwords($val);
     }
-
-    public function getGenreAttribute($val){
-        if ($val == 1) {
-            return 'Laki - laki';
-        }
-        return 'Perempuan';
-    }
 }

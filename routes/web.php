@@ -23,6 +23,10 @@ $api->version('v1', function() use($api) {
         $api->put('/members/{id}/update', 'MemberController@update');
         $api->delete('/members/{id}', 'MemberController@delete');
     });
+//    $api->get('/members', 'MemberController@index');
+//    $api->post('/members', 'MemberController@store');
+//    $api->put('/members/{id}/update', 'MemberController@update');
+//    $api->delete('/members/{id}', 'MemberController@delete');
 
     $api->get('/publishers', 'PublisherController@index');
     $api->post('/publishers', 'PublisherController@store');
