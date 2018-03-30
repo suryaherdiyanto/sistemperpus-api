@@ -84,7 +84,13 @@ class MemberController extends Controller
         ], 200);
     }
 
-    public function delete($id){
+    public function delete($id, Request $request){
+        if ($request->has('restore')){
+            $this->member->onlyTrashed()->where('id', $id)->restore();
+            return response()->json([
+                'message' => 'Member berhasil direstore'
+            ], 200);
+        }
         $this->member->destroy($id);
         return response()->json([
             'message' => 'Member berhasil dihapus!'
